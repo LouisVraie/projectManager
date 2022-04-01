@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,6 +28,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    QSqlQueryModel *queryModel;
 
 };
 #endif // MAINWINDOW_H
