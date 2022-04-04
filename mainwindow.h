@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QInputDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,6 +27,9 @@ public:
     bool isDatabaseEmpty();
     void createTables();
     void dropTables();
+
+private slots:
+    void on_pushButtonAddTask_clicked();
 
 private:
     Ui::MainWindow *ui;

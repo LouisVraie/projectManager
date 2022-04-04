@@ -50,9 +50,10 @@ void MainWindow::createTables()
     QSqlQuery createTableProject(project);
 
     //creation of Task table
-    QString task = "CREATE TABLE `Task`(`taskId` INTEGER NOT NULL,`taskDescription` VARCHAR(300),`taskDurationInHours` INTEGER,"
-                   "`taskOrder` INTEGER,`taskIsFinished` BOOL DEFAULT 0,`taskFinishNote` VARCHAR(100),`projectId` INTEGER NOT NULL,"
-                   " foreign key (`projectId`) references Project(`projectId`),primary key(`taskId`));";
+    QString task = "CREATE TABLE `Task`(`taskId` INTEGER NOT NULL,`taskDescription` VARCHAR(300),"
+                   "`taskDurationInHours` INTEGER DEFAULT 0,`taskDurationInMinutes` INTEGER DEFAULT 0,"
+                   "`taskOrder` INTEGER DEFAULT 0,`taskIsFinished` BOOL DEFAULT 0,`taskFinishNote` VARCHAR(100),"
+                   "`projectId` INTEGER NOT NULL, foreign key (`projectId`) references Project(`projectId`),primary key(`taskId`));";
     qDebug()<<task;
     QSqlQuery createTableTask(task);
 
@@ -87,3 +88,10 @@ void MainWindow::dropTables()
     qDebug()<<project;
     QSqlQuery dropTableProject(project);
 }
+
+void MainWindow::on_pushButtonAddTask_clicked()
+{
+    QString text = QInputDialog::getText(this, tr("Add a task"),
+                                             tr("User name:"), QLineEdit::Normal,"");
+}
+
