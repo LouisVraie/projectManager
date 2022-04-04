@@ -9,7 +9,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     queryModel = new QSqlQueryModel(this);
 
+    dropTables();
+
+    //if the database is empty
     if(isDatabaseEmpty()){
+        //creation of database's tables
         createTables();
     }
 }
@@ -39,19 +43,47 @@ void MainWindow::createTables()
     qDebug()<<"void MainWindow::createTables()";
 
     //creation of Project table
-    QString project = "CREATE TABLE `Project`(`projectId` INTEGER NOT NULL,`projectStartDate` DATE,"
-                      "`projectEndDate` DATE,`projectTitle` VARCHAR(75),`projectDescription` VARCHAR(300),"
-                      "primary key(`projectId`));";
+    QString project = "CREATE TABLE `Project`(`projectId` INTEGER NOT NULL,`projectStartDate` DATE,`projectEndDate` DATE,"
+                      "`projectTitle` VARCHAR(75),`projectDescription` VARCHAR(300),`projectRealEndDate` DATE,"
+                      "`projectIsFinished` BOOL DEFAULT 0,primary key(`projectId`));";
     qDebug()<<project;
     QSqlQuery createTableProject(project);
 
     //creation of Task table
-    QString task = "CREATE TABLE `Task`(`taskId` INTEGER NOT NULL,`taskDescription` VARCHAR(300),"
-                   "`taskDurationInHours` INTEGER,`taskOrder` INTEGER,`taskDaySpent` INTEGER DEFAULT 0,"
-                   "`taskTimeSpent` TIME,`taskIsFinished` BOOL DEFAULT 0,`taskFinishNote` VARCHAR(100),"
-                   "`projectId` INTEGER NOT NULL, foreign key (`projectId`) references Project(`projectId`),"
-                   "primary key(`taskId`));";
+    QString task = "CREATE TABLE `Task`(`taskId` INTEGER NOT NULL,`taskDescription` VARCHAR(300),`taskDurationInHours` INTEGER,"
+                   "`taskOrder` INTEGER,`taskIsFinished` BOOL DEFAULT 0,`taskFinishNote` VARCHAR(100),`projectId` INTEGER NOT NULL,"
+                   " foreign key (`projectId`) references Project(`projectId`),primary key(`taskId`));";
     qDebug()<<task;
     QSqlQuery createTableTask(task);
+
+    //creation of Session table
+    QString session = "CREATE TABLE `Session`(`sessionId` INTEGER NOT NULL,`sessionStartDate` DATETIME,`sessionEndDate` DATETIME,"
+                      "`sessionDescription` VARCHAR(300),`taskId` INTEGER NOT NULL, "
+                      "foreign key (`taskId`) references Task(`taskId`),primary key(`sessionId`));";
+    qDebug()<<session;
+    QSqlQuery createTableSession(session);
 }
 
+/**
+ * @brief MainWindow::dropTables
+ * Public MainWindow class method which drop tables in the database
+ */
+void MainWindow::dropTables()
+{
+    qDebug()<<"void MainWindow::dropTables()";
+
+    //drop of the Session table
+    QString session = "DROP TABLE `Session`;";
+    qDebug()<<session;
+    QSqlQuery dropTableSession(session);
+
+    //drop of the Task table
+    QString task = "DROP TABLE `Task`;";
+    qDebug()<<task;
+    QSqlQuery dropTableTask(task);
+
+    //drop of the Project table
+    QString project = "DROP TABLE `Project`;";
+    qDebug()<<project;
+    QSqlQuery dropTableProject(project);
+}

@@ -25,6 +25,7 @@ public:
 
     bool isDatabaseEmpty();
     void createTables();
+    void dropTables();
 
 private:
     Ui::MainWindow *ui;
