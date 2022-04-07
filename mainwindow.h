@@ -29,22 +29,23 @@ public:
     bool isDatabaseEmpty();
     void createTables();
     void dropTables();
-    static void maxQPlainTextEditLength(QPlainTextEdit *myPlainTextEdit,int maxLength);
 
     /* home.cpp */
 
     /* newProject.cpp */
     void initNewProject();
+    void clearNewProject();
 
     /* newTask.cpp */
 
-
 private slots:
+
     /* home.cpp */
     void on_pushButtonHomeNewProject_clicked();
 
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();
+    void on_allInputs_textChanged();
 
     /* newTask.cpp */
     void on_pushButtonNewTaskAddTask_clicked();

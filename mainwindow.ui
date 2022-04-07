@@ -11,11 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Project Manager</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(46, 52, 54);
-color: rgb(255, 255, 255);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -194,7 +193,11 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QDateEdit" name="dateEditNewProjectStartDate"/>
+           <widget class="QDateEdit" name="dateEditNewProjectStartDate">
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelNewProjectEndDate">
@@ -204,7 +207,11 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QDateEdit" name="dateEditNewProjectEndDate"/>
+           <widget class="QDateEdit" name="dateEditNewProjectEndDate">
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="labelNewProjectDescription">
