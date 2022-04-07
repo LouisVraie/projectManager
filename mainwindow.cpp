@@ -101,6 +101,20 @@ void MainWindow::dropTables()
     QSqlQuery dropTableProject(project);
 }
 
+/**
+ * @brief MainWindow::maxQPlainTextEditLength
+ * Public static method of the MainWindow class which allow us to set a max length for a QPlainTextEdit
+ * @param myPlainTextEdit: QPlainTextEdit
+ * @param maxLength: int Max length for the QPlainTextEdit
+ */
+void MainWindow::maxQPlainTextEditLength(QPlainTextEdit *myPlainTextEdit,int maxLength)
+{
+    qDebug()<<"void MainWindow::maxQPlainTextEditLength(QPlainTextEdit *myPlainTextEdit,int maxLength)";
+    if (myPlainTextEdit->toPlainText().length() > maxLength) {
+        myPlainTextEdit->textCursor().deletePreviousChar();
+    }
+}
+
 
 
 

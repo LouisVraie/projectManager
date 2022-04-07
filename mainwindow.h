@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QInputDialog>
+#include <QPlainTextEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,10 +29,12 @@ public:
     bool isDatabaseEmpty();
     void createTables();
     void dropTables();
+    static void maxQPlainTextEditLength(QPlainTextEdit *myPlainTextEdit,int maxLength);
 
     /* home.cpp */
 
     /* newProject.cpp */
+    void initNewProject();
 
     /* newTask.cpp */
 

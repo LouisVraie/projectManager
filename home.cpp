@@ -9,6 +9,8 @@
 void MainWindow::on_pushButtonHomeNewProject_clicked()
 {
     qDebug()<<"void MainWindow::on_pushButtonNewProject_clicked()";
-    //we show the 'New Project' page
+    //initialize the 'New Project' page
+    initNewProject();
+    //show the 'New Project' page
     ui->stackedWidgetApp->setCurrentIndex(1);
 }
