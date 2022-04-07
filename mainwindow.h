@@ -24,12 +24,27 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    /* mainwindow.cpp */
     bool isDatabaseEmpty();
     void createTables();
     void dropTables();
 
+    /* home.cpp */
+
+    /* newProject.cpp */
+
+    /* newTask.cpp */
+
+
 private slots:
-    void on_pushButtonAddTask_clicked();
+    /* home.cpp */
+    void on_pushButtonHomeNewProject_clicked();
+
+    /* newProject.cpp */
+    void on_pushButtonNewProjectCancel_clicked();
+
+    /* newTask.cpp */
+    void on_pushButtonNewTaskAddTask_clicked();
 
 private:
     Ui::MainWindow *ui;

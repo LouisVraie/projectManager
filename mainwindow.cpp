@@ -1,6 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+/**
+ * @brief MainWindow::MainWindow
+ * Constructor of the MainWindow class which create our app window
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -8,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     queryModel = new QSqlQueryModel(this);
+
+    //we first show the 'Home' page
+    ui->stackedWidgetApp->setCurrentIndex(0);
 
     dropTables();
 
@@ -18,6 +26,10 @@ MainWindow::MainWindow(QWidget *parent)
     }
 }
 
+/**
+ * @brief MainWindow::~MainWindow
+ * Destructor of the MainWindow class
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -89,9 +101,6 @@ void MainWindow::dropTables()
     QSqlQuery dropTableProject(project);
 }
 
-void MainWindow::on_pushButtonAddTask_clicked()
-{
-    QString text = QInputDialog::getText(this, tr("Add a task"),
-                                             tr("User name:"), QLineEdit::Normal,"");
-}
+
+
 

@@ -20,16 +20,16 @@ color: rgb(255, 255, 255);</string>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
-     <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QStackedWidget" name="stackedWidgetApp">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="pageMain">
+      <widget class="QWidget" name="pageHome">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QLabel" name="labelProject">
+           <widget class="QLabel" name="labelHomeProject">
             <property name="maximumSize">
              <size>
               <width>70</width>
@@ -42,7 +42,7 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBoxProject">
+           <widget class="QComboBox" name="comboBoxHomeProject">
             <property name="minimumSize">
              <size>
               <width>50</width>
@@ -52,7 +52,7 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButtonNewProject">
+           <widget class="QPushButton" name="pushButtonHomeNewProject">
             <property name="text">
              <string>New &amp;Project</string>
             </property>
@@ -63,19 +63,19 @@ color: rgb(255, 255, 255);</string>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QListView" name="listViewTasks"/>
+           <widget class="QListView" name="listViewHomeTasks"/>
           </item>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QLabel" name="labelTaskDescription">
+             <widget class="QLabel" name="labelHomeTaskDescription">
               <property name="text">
                <string>Task Description</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelTaskDuration">
+             <widget class="QLabel" name="labelHomeTaskDuration">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -88,28 +88,28 @@ color: rgb(255, 255, 255);</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonSessionStartRestart">
+             <widget class="QPushButton" name="pushButtonHomeSessionStartRestart">
               <property name="text">
                <string>&amp;Start / Restart</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonOrderUp">
+             <widget class="QPushButton" name="pushButtonHomeOrderUp">
               <property name="text">
                <string>&amp;Up</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonOrderDown">
+             <widget class="QPushButton" name="pushButtonHomeOrderDown">
               <property name="text">
                <string>&amp;Down</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBoxTaskFinished">
+             <widget class="QCheckBox" name="checkBoxHomeTaskFinished">
               <property name="text">
                <string>&amp;Task finished</string>
               </property>
@@ -122,16 +122,16 @@ color: rgb(255, 255, 255);</string>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPushButton" name="pushButtonNewTask">
+           <widget class="QPushButton" name="pushButtonHomeNewTask">
             <property name="text">
              <string>New &amp;Task</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButtonDeleteTask">
+           <widget class="QPushButton" name="pushButtonHomeDeleteTask">
             <property name="text">
-             <string>&amp;Delete</string>
+             <string>&amp;Delete Task</string>
             </property>
            </widget>
           </item>
@@ -162,7 +162,7 @@ color: rgb(255, 255, 255);</string>
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>40</height>
+            <height>26</height>
            </size>
           </property>
          </spacer>
@@ -212,11 +212,22 @@ color: rgb(255, 255, 255);</string>
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButtonNewProjectCreate">
-          <property name="text">
-           <string>&amp;Create project</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="pushButtonNewProjectCreate">
+            <property name="text">
+             <string>Create &amp;Project</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonNewProjectCancel">
+            <property name="text">
+             <string>&amp;Cancel</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -266,7 +277,7 @@ color: rgb(255, 255, 255);</string>
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
-             <widget class="QSpinBox" name="spinBoxTaskDurationInHours">
+             <widget class="QSpinBox" name="spinBoxNewTaskDurationInHours">
               <property name="maximum">
                <number>999</number>
               </property>
@@ -286,7 +297,7 @@ color: rgb(255, 255, 255);</string>
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="spinBoxTaskDurationInMinutes">
+             <widget class="QSpinBox" name="spinBoxNewTaskDurationInMinutes">
               <property name="maximum">
                <number>59</number>
               </property>
@@ -302,7 +313,7 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QPlainTextEdit" name="plainTextEdit">
+           <widget class="QPlainTextEdit" name="plainTextEditNewTaskDescription">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -314,11 +325,22 @@ color: rgb(255, 255, 255);</string>
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButtonAddTask">
-          <property name="text">
-           <string>&amp;Add Task</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="pushButtonNewTaskAddTask">
+            <property name="text">
+             <string>Add &amp;Task</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonNewTaskCancel">
+            <property name="text">
+             <string>&amp;Cancel</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
