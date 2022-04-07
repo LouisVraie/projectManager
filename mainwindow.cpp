@@ -3,7 +3,7 @@
 
 /**
  * @brief MainWindow::MainWindow
- * Constructor of the MainWindow class which create our app window
+ * Constructor of MainWindow class which create our app window
  * @param parent
  */
 MainWindow::MainWindow(QWidget *parent)
@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 /**
  * @brief MainWindow::~MainWindow
- * Destructor of the MainWindow class
+ * Destructor of MainWindow class
  */
 MainWindow::~MainWindow()
 {
@@ -43,7 +43,7 @@ MainWindow::~MainWindow()
 
 /**
  * @brief MainWindow::isDatabaseEmpty
- * Public MainWindow class method which return if the database contains tables or not
+ * Public method of MainWindow class which return if the database contains tables or not
  * @return bool true if empty
  */
 bool MainWindow::isDatabaseEmpty()
@@ -54,7 +54,7 @@ bool MainWindow::isDatabaseEmpty()
 
 /**
  * @brief MainWindow::createTables
- * Public MainWindow class method which create tables in the database
+ * Public method of MainWindow class which create tables in the database
  */
 void MainWindow::createTables()
 {
@@ -85,7 +85,7 @@ void MainWindow::createTables()
 
 /**
  * @brief MainWindow::dropTables
- * Public MainWindow class method which drop tables in the database
+ * Public method of MainWindow class which drop tables in the database
  */
 void MainWindow::dropTables()
 {
@@ -106,6 +106,23 @@ void MainWindow::dropTables()
     qDebug()<<project;
     QSqlQuery dropTableProject(project);
 }
+
+/**
+ * @brief MainWindow::escapeString
+ * Public static method of MainWindow class which allow us to escape some characters
+ * @param myQString: QString
+ * @return QString
+ */
+QString MainWindow::escapeString(QString myQString)
+{
+    //replace ';' by an empty string
+    myQString = myQString.replace(";","");
+    //double simples quotes
+    myQString = myQString.replace("'","''");
+    return myQString;
+}
+
+
 
 
 

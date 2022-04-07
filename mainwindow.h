@@ -29,6 +29,7 @@ public:
     bool isDatabaseEmpty();
     void createTables();
     void dropTables();
+    QString escapeString(QString myQString);
 
     /* home.cpp */
 
@@ -49,6 +50,8 @@ private slots:
 
     /* newTask.cpp */
     void on_pushButtonNewTaskAddTask_clicked();
+
+    void on_pushButtonNewProjectCreate_clicked();
 
 private:
     Ui::MainWindow *ui;
