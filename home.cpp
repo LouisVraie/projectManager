@@ -1,10 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 /**
  * @brief MainWindow::on_pushButtonHomeNewProject_clicked
- * Private slots method of the MainWindow class which shows the 'New Project' page
+ * Private slots method of MainWindow class which shows the 'New Project' page
  */
 void MainWindow::on_pushButtonHomeNewProject_clicked()
 {

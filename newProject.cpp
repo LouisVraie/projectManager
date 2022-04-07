@@ -3,7 +3,7 @@
 
 /**
  * @brief MainWindow::initNewProject
- * Public method of the MainWindow class which initialize the 'New Project' page
+ * Public method of MainWindow class which initialize the 'New Project' page
  */
 void MainWindow::initNewProject()
 {
@@ -17,7 +17,7 @@ void MainWindow::initNewProject()
 
 /**
  * @brief MainWindow::clearNewProject
- * Public method of the MainWindow class which clear all inputs for the 'New Project' page
+ * Public method of MainWindow class which clear all inputs for the 'New Project' page
  */
 void MainWindow::clearNewProject()
 {
@@ -36,7 +36,7 @@ void MainWindow::clearNewProject()
 
 /**
  * @brief MainWindow::on_pushButtonNewProjectCancel_clicked
- * Private slots method of the MainWindow class which shows back the 'Home' window
+ * Private slots method of MainWindow class which shows back the 'Home' window
  */
 void MainWindow::on_pushButtonNewProjectCancel_clicked()
 {
@@ -46,7 +46,7 @@ void MainWindow::on_pushButtonNewProjectCancel_clicked()
 
 /**
  * @brief MainWindow::on_allInputs_textChanged
- * Private slots method of the MainWindow class which allow us to enable or disable the 'Create Project' button
+ * Private slots method of MainWindow class which allow us to enable or disable the 'Create Project' button
  */
 void MainWindow::on_allInputs_textChanged()
 {
@@ -62,4 +62,21 @@ void MainWindow::on_allInputs_textChanged()
     } else {
         ui->pushButtonNewProjectCreate->setEnabled(false);
     }
+}
+
+/**
+ * @brief MainWindow::on_pushButtonNewProjectCreate_clicked
+ * Private slots method of MainWindow class which create a new project
+ */
+void MainWindow::on_pushButtonNewProjectCreate_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonNewProjectCreate_clicked()";
+    QString projectId = "";
+    QString title = escapeString(ui->lineEditNewProjectTitle->text());
+    QString startDate = ui->dateEditNewProjectStartDate->date().toString("yyyy-MM-dd");
+    QString endDate = ui->dateEditNewProjectEndDate->date().toString("yyyy-MM-dd");
+    QString description = escapeString(ui->plainTextEditNewProjectDescription->toPlainText());
+
+    QString reqInsertProject = "INSERT INTO Project (projectId,projectStartDate,projectEndDate,projectTitle,projectDescription"
+                               "VALUES ("+projectId+",'"+startDate+"','"+endDate+"','"+title+"','"+description+"')";
 }
