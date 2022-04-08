@@ -13,6 +13,16 @@ void MainWindow::initHome()
 }
 
 /**
+ * @brief MainWindow::pageHome
+ * Public method of MainWindow class which set the stackedWidgetApp current index on the 'Home' page
+ */
+void MainWindow::pageHome()
+{
+    qDebug()<<"void MainWindow::pageHome()";
+    ui->stackedWidgetApp->setCurrentIndex(0);
+}
+
+/**
  * @brief MainWindow::on_pushButtonHomeNewProject_clicked
  * Private slots method of MainWindow class which shows the 'New Project' page
  */
@@ -22,7 +32,7 @@ void MainWindow::on_pushButtonHomeNewProject_clicked()
     //initialize the 'New Project' page
     initNewProject();
     //show the 'New Project' page
-    ui->stackedWidgetApp->setCurrentIndex(1);
+    pageNewProject();
 }
 
 /**
@@ -45,4 +55,14 @@ void MainWindow::fillComboBoxHomeProject()
         QString projectId = resultSelectProject.value("projectId").toString();
         ui->comboBoxHomeProject->addItem(projectTitle,projectId);
     }
+}
+
+/**
+ * @brief MainWindow::on_pushButtonHomeNewTask_clicked
+ * Private slots method of MainWindow class which shows the 'New Task' page
+ */
+void MainWindow::on_pushButtonHomeNewTask_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonHomeNewTask_clicked()";
+    pageNewTask();
 }

@@ -1,10 +1,22 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
-
-void MainWindow::on_pushButtonNewTaskAddTask_clicked()
+/**
+ * @brief MainWindow::initNewTask
+ * Public method of MainWindow class which initialize the 'New Task' page
+ */
+void MainWindow::initNewTask()
 {
-    QString text = QInputDialog::getText(this, tr("Add a task"),
-                                             tr("User name:"), QLineEdit::Normal,"");
+    qDebug()<<"void MainWindow::initNewTask()";
 }
+
+/**
+ * @brief MainWindow::pageNewTask
+ * Public method of MainWindow class which set the stackedWidgetApp current index on the 'New Task' page
+ */
+void MainWindow::pageNewTask()
+{
+    qDebug()<<"void MainWindow::pageNewTask()";
+    ui->stackedWidgetApp->setCurrentIndex(2);
+}
+

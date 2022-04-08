@@ -16,6 +16,16 @@ void MainWindow::initNewProject()
 }
 
 /**
+ * @brief MainWindow::pageNewProject
+ * Public method of MainWindow class which set the stackedWidgetApp current index on the 'New Project' page
+ */
+void MainWindow::pageNewProject()
+{
+    qDebug()<<"void MainWindow::pageNewProject()";
+    ui->stackedWidgetApp->setCurrentIndex(1);
+}
+
+/**
  * @brief MainWindow::clearNewProject
  * Public method of MainWindow class which clear all inputs for the 'New Project' page
  */
@@ -89,6 +99,6 @@ void MainWindow::on_pushButtonNewProjectCreate_clicked()
     //if the request worked
     if(resultInsertProject.numRowsAffected() != -1){
         ui->comboBoxHomeProject->addItem(title,projectId);
-        ui->stackedWidgetApp->setCurrentIndex(0);
+        pageHome();
     }
 }

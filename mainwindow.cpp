@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     queryModel = new QSqlQueryModel(this);
 
     //we first show the 'Home' page
-    ui->stackedWidgetApp->setCurrentIndex(0);
+    pageHome();
 
     //dropTables();
 
@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     initNewProject();
 
     /* newTask.cpp */
+    initNewTask();
 }
 
 /**
