@@ -46,6 +46,7 @@ public:
     /* newTask.cpp */
     void initNewTask();
     void pageNewTask();
+    void clearNewTask();
 
 private slots:
 
@@ -55,11 +56,12 @@ private slots:
 
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();
-    void on_allInputs_textChanged();
+    void on_allInputsNewProject_textChanged();
     void on_pushButtonNewProjectCreate_clicked();
 
     /* newTask.cpp */
     void on_pushButtonNewTaskCancel_clicked();
+    void on_allInputsNewTask_textChanged();
 
 private:
     Ui::MainWindow *ui;

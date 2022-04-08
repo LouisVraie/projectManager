@@ -296,26 +296,19 @@
             </property>
             <item>
              <widget class="QSpinBox" name="spinBoxNewTaskDurationInHours">
+              <property name="suffix">
+               <string> H</string>
+              </property>
               <property name="maximum">
                <number>999</number>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelTaskDurationInHours">
-              <property name="maximumSize">
-               <size>
-                <width>10</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>H</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QSpinBox" name="spinBoxNewTaskDurationInMinutes">
+              <property name="suffix">
+               <string> min</string>
+              </property>
               <property name="maximum">
                <number>59</number>
               </property>

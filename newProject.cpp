@@ -9,10 +9,10 @@ void MainWindow::initNewProject()
 {
     qDebug()<<"void MainWindow::initNewProject()";
     clearNewProject();
-    connect(ui->lineEditNewProjectTitle,SIGNAL(textChanged(QString)),this,SLOT(on_allInputs_textChanged()));
-    connect(ui->dateEditNewProjectStartDate,SIGNAL(dateChanged(QDate)),this,SLOT(on_allInputs_textChanged()));
-    connect(ui->dateEditNewProjectEndDate,SIGNAL(dateChanged(QDate)),this,SLOT(on_allInputs_textChanged()));
-    connect(ui->plainTextEditNewProjectDescription,SIGNAL(textChanged()),this,SLOT(on_allInputs_textChanged()));
+    connect(ui->lineEditNewProjectTitle,SIGNAL(textChanged(QString)),this,SLOT(on_allInputsNewProject_textChanged()));
+    connect(ui->dateEditNewProjectStartDate,SIGNAL(dateChanged(QDate)),this,SLOT(on_allInputsNewProject_textChanged()));
+    connect(ui->dateEditNewProjectEndDate,SIGNAL(dateChanged(QDate)),this,SLOT(on_allInputsNewProject_textChanged()));
+    connect(ui->plainTextEditNewProjectDescription,SIGNAL(textChanged()),this,SLOT(on_allInputsNewProject_textChanged()));
 }
 
 /**
@@ -31,6 +31,7 @@ void MainWindow::pageNewProject()
  */
 void MainWindow::clearNewProject()
 {
+    qDebug()<<"void MainWindow::clearNewProject()";
     //clear all inputs
     ui->lineEditNewProjectTitle->clear();
     ui->plainTextEditNewProjectDescription->clear();
@@ -55,12 +56,12 @@ void MainWindow::on_pushButtonNewProjectCancel_clicked()
 }
 
 /**
- * @brief MainWindow::on_allInputs_textChanged
+ * @brief MainWindow::on_allInputsNewProject_textChanged
  * Private slots method of MainWindow class which allow us to enable or disable the 'Create Project' button
  */
-void MainWindow::on_allInputs_textChanged()
+void MainWindow::on_allInputsNewProject_textChanged()
 {
-    qDebug()<<"void MainWindow::on_allInputs_textChanged()";
+    qDebug()<<"void MainWindow::on_allInputsNewProject_textChanged()";
     bool title = ui->lineEditNewProjectTitle->text().length() > 3 && ui->lineEditNewProjectTitle->text().length() <= 75;
     bool date = ui->dateEditNewProjectStartDate->date().daysTo(ui->dateEditNewProjectEndDate->date()) > -1;
     bool description = ui->plainTextEditNewProjectDescription->toPlainText().length() > 10;

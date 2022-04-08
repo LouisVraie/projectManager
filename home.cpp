@@ -64,5 +64,6 @@ void MainWindow::fillComboBoxHomeProject()
 void MainWindow::on_pushButtonHomeNewTask_clicked()
 {
     qDebug()<<"void MainWindow::on_pushButtonHomeNewTask_clicked()";
+    clearNewTask();
     pageNewTask();
 }
