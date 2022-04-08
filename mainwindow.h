@@ -8,6 +8,7 @@
 #include <QSqlQueryModel>
 #include <QInputDialog>
 #include <QPlainTextEdit>
+#include <QString>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +31,7 @@ public:
     void createTables();
     void dropTables();
     QString escapeString(QString myQString);
+    QString setNextId(QString table, QString column,int iteration = 1);
 
     /* home.cpp */
 

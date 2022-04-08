@@ -71,12 +71,23 @@ void MainWindow::on_allInputs_textChanged()
 void MainWindow::on_pushButtonNewProjectCreate_clicked()
 {
     qDebug()<<"void MainWindow::on_pushButtonNewProjectCreate_clicked()";
-    QString projectId = "";
+    //get all datas
+    QString table = "Project";
+    QString column = "projectId";
+    QString projectId = setNextId(table,column);
     QString title = escapeString(ui->lineEditNewProjectTitle->text());
     QString startDate = ui->dateEditNewProjectStartDate->date().toString("yyyy-MM-dd");
     QString endDate = ui->dateEditNewProjectEndDate->date().toString("yyyy-MM-dd");
     QString description = escapeString(ui->plainTextEditNewProjectDescription->toPlainText());
 
-    QString reqInsertProject = "INSERT INTO Project (projectId,projectStartDate,projectEndDate,projectTitle,projectDescription"
+    //insert request
+    QString reqInsertProject = "INSERT INTO Project (projectId,projectStartDate,projectEndDate,projectTitle,projectDescription) "
                                "VALUES ("+projectId+",'"+startDate+"','"+endDate+"','"+title+"','"+description+"')";
+    qDebug()<<reqInsertProject;
+    QSqlQuery resultInsertProject(reqInsertProject);
+
+    //if the request worked
+    if(resultInsertProject.numRowsAffected() != -1){
+        ui->stackedWidgetApp->setCurrentIndex(0);
+    }
 }

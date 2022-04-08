@@ -122,6 +122,30 @@ QString MainWindow::escapeString(QString myQString)
     return myQString;
 }
 
+/**
+ * @brief MainWindow::setNextId
+ * Public method of MainWindow class which set the next id for the current column in the current table
+ * @param table: QString The table name
+ * @param column: QString The column name | Default value : "id"
+ * @param interation: int The iteration value | Default value : 1
+ * @return QString The new next id
+ */
+QString MainWindow::setNextId(QString table, QString column = "id",int iteration)
+{
+    qDebug()<<"int MainWindow::setNextId(QString table, QString column,int iteration)";
+    QString nextId = "";
+
+    QString reqNextId = "SELECT IFNULL(MAX("+column+")+"+QString::number(iteration)+",1) FROM "+table;
+    qDebug()<<reqNextId;
+    QSqlQuery resultNextId(reqNextId);
+
+    //if the request worked
+    if(resultNextId.numRowsAffected() != -1){
+        resultNextId.first();
+        nextId = resultNextId.value(0).toString();
+    }
+    return nextId;
+}
 
 
 
