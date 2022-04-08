@@ -37,6 +37,7 @@ public:
     void initHome();
     void pageHome();
     void fillComboBoxHomeProject();
+    void updateListViewHomeTasks();
 
     /* newProject.cpp */
     void initNewProject();
@@ -47,6 +48,7 @@ public:
     void initNewTask();
     void pageNewTask();
     void clearNewTask();
+
 
 private slots:
 
@@ -62,6 +64,8 @@ private slots:
     /* newTask.cpp */
     void on_pushButtonNewTaskCancel_clicked();
     void on_allInputsNewTask_textChanged();
+
+    void on_pushButtonNewTaskAddTask_clicked();
 
 private:
     Ui::MainWindow *ui;

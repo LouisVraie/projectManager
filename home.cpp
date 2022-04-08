@@ -8,6 +8,11 @@
 void MainWindow::initHome()
 {
     qDebug()<<"void MainWindow::initHome()";
+
+    queryModel = new QSqlQueryModel(this);
+    ui->listViewHomeTasks->setModel(queryModel);
+
+    updateListViewHomeTasks();
     //we fill the comboBox with all unfinished projects
     fillComboBoxHomeProject();
 }
@@ -66,4 +71,15 @@ void MainWindow::on_pushButtonHomeNewTask_clicked()
     qDebug()<<"void MainWindow::on_pushButtonHomeNewTask_clicked()";
     clearNewTask();
     pageNewTask();
+}
+
+/**
+ * @brief MainWindow::updateListViewHomeTasks
+ * Public method of MainWindow class which update the list view in the 'Home' page
+ */
+void MainWindow::updateListViewHomeTasks()
+{
+    qDebug()<<"void MainWindow::updateListViewHomeTasks()";
+    QString taskList = "SELECT taskDescription FROM Task ORDER BY taskOrder DESC";
+    queryModel->setQuery(taskList);
 }

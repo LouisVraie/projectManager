@@ -69,3 +69,32 @@ void MainWindow::on_allInputsNewTask_textChanged()
         ui->pushButtonNewTaskAddTask->setEnabled(false);
     }
 }
+
+/**
+ * @brief MainWindow::on_pushButtonNewTaskAddTask_clicked
+ * Private slots method of MainWindow class which create a new task to the current project
+ */
+void MainWindow::on_pushButtonNewTaskAddTask_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonNewTaskAddTask_clicked()";
+    //get all datas
+    QString table = "Task";
+    QString column = "taskId";
+    QString taskId = setNextId(table,column);
+    QString description = escapeString(ui->plainTextEditNewTaskDescription->toPlainText());
+    QString durationInHours = QString::number(ui->spinBoxNewTaskDurationInHours->value());
+    QString durationInMinutes = QString::number(ui->spinBoxNewTaskDurationInMinutes->value());
+    QString projectId = ui->comboBoxHomeProject->currentData().toString();
+
+    //insert request
+    QString reqInsertTask = "INSERT INTO Task (taskId,taskDescription,taskDurationInHours,taskDurationInMinutes,projectId) "
+                               "VALUES ("+taskId+",'"+description+"',"+durationInHours+","+durationInMinutes+","+projectId+")";
+    qDebug()<<reqInsertTask;
+    QSqlQuery resultInsertTask(reqInsertTask);
+
+    //if the request worked
+    if(resultInsertTask.numRowsAffected() != -1){
+        updateListViewHomeTasks();
+        pageHome();
+    }
+}
