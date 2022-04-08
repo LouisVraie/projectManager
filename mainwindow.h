@@ -34,6 +34,8 @@ public:
     QString setNextId(QString table, QString column,int iteration = 1);
 
     /* home.cpp */
+    void initHome();
+    void fillComboBoxHomeProject();
 
     /* newProject.cpp */
     void initNewProject();
@@ -49,11 +51,10 @@ private slots:
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();
     void on_allInputs_textChanged();
+    void on_pushButtonNewProjectCreate_clicked();
 
     /* newTask.cpp */
     void on_pushButtonNewTaskAddTask_clicked();
-
-    void on_pushButtonNewProjectCreate_clicked();
 
 private:
     Ui::MainWindow *ui;

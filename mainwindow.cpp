@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     //we first show the 'Home' page
     ui->stackedWidgetApp->setCurrentIndex(0);
 
-    dropTables();
+    //dropTables();
 
     //if the database is empty
     if(isDatabaseEmpty()){
@@ -25,9 +25,10 @@ MainWindow::MainWindow(QWidget *parent)
         createTables();
     }
     /* home.cpp */
+    initHome();
 
     /* newProject.cpp */
-    void initNewProject();
+    initNewProject();
 
     /* newTask.cpp */
 }

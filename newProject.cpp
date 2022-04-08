@@ -88,6 +88,7 @@ void MainWindow::on_pushButtonNewProjectCreate_clicked()
 
     //if the request worked
     if(resultInsertProject.numRowsAffected() != -1){
+        ui->comboBoxHomeProject->addItem(title,projectId);
         ui->stackedWidgetApp->setCurrentIndex(0);
     }
 }
