@@ -51,6 +51,7 @@ private slots:
 
     /* home.cpp */
     void on_pushButtonHomeNewProject_clicked();
+    void on_pushButtonHomeNewTask_clicked();
 
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();
@@ -58,7 +59,7 @@ private slots:
     void on_pushButtonNewProjectCreate_clicked();
 
     /* newTask.cpp */
-    void on_pushButtonHomeNewTask_clicked();
+    void on_pushButtonNewTaskCancel_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -20,3 +20,12 @@ void MainWindow::pageNewTask()
     ui->stackedWidgetApp->setCurrentIndex(2);
 }
 
+/**
+ * @brief MainWindow::on_pushButtonNewTaskCancel_clicked
+ * Private slots method of MainWindow class which shows back the 'Home' window
+ */
+void MainWindow::on_pushButtonNewTaskCancel_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonNewTaskCancel_clicked()";
+    pageHome();
+}
