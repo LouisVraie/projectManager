@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QSqlTableModel>
 #include <QInputDialog>
 #include <QPlainTextEdit>
 #include <QString>
@@ -37,7 +38,7 @@ public:
     void initHome();
     void pageHome();
     void fillComboBoxHomeProject();
-    void updateListWidgetHomeTasks();
+    void updateTableViewHomeTasks();
 
     /* newProject.cpp */
     void initNewProject();
@@ -66,10 +67,13 @@ private slots:
     void on_allInputsNewTask_textChanged();
     void on_pushButtonNewTaskAddTask_clicked();
 
+    void on_tableViewHomeTasks_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 
     QSqlQueryModel *queryModel;
+    QSqlTableModel *tableModel;
 
 };
 #endif // MAINWINDOW_H

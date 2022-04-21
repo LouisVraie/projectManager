@@ -94,7 +94,7 @@ void MainWindow::on_pushButtonNewTaskAddTask_clicked()
 
     //if the request worked
     if(resultInsertTask.numRowsAffected() != -1){
-        updateListWidgetHomeTasks();
+        updateTableViewHomeTasks();
         pageHome();
     }
 }

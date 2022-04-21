@@ -9,9 +9,11 @@ void MainWindow::initHome()
 {
     qDebug()<<"void MainWindow::initHome()";
 
-    updateListWidgetHomeTasks();
     //we fill the comboBox with all unfinished projects
     fillComboBoxHomeProject();
+
+    ui->tableViewHomeTasks->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    updateTableViewHomeTasks();
 }
 
 /**
@@ -71,20 +73,44 @@ void MainWindow::on_pushButtonHomeNewTask_clicked()
 }
 
 /**
- * @brief MainWindow::updateListWidgetHomeTasks
- * Public method of MainWindow class which update the list widget in the 'Home' page
+ * @brief MainWindow::updateTableViewHomeTasks
+ * Public method of MainWindow class which update the table view in the 'Home' page
  */
-void MainWindow::updateListWidgetHomeTasks()
+void MainWindow::updateTableViewHomeTasks()
 {
-    qDebug()<<"void MainWindow::updateListViewHomeTasks()";
-    ui->listWidgetHomeTasks->clear();
-    QString reqTaskList = "SELECT taskDescription FROM Task ORDER BY taskOrder DESC";
-    qDebug()<<reqTaskList;
-    QSqlQuery resultTaskList(reqTaskList);
-
-    //while there are tasks we list them in the list widget
-    while(resultTaskList.next()){
-        ui->listWidgetHomeTasks->addItem(resultTaskList.value("taskDescription").toString());
+    qDebug()<<"void MainWindow::updateTableViewHomeTasks()";
+    //if a project is selected
+    if (ui->comboBoxHomeProject->currentData().isValid()){
+        tableModel->setTable("Task");
+        tableModel->setFilter("projectId ="+ui->comboBoxHomeProject->currentData().toString());
+        tableModel->setSort(4,Qt::DescendingOrder);
+    } else {
+        //clear the tableView
+        tableModel->clear();
     }
+    tableModel->select();
 
+    //define the tableView model we want to show
+    ui->tableViewHomeTasks->setModel(tableModel);
+    ui->tableViewHomeTasks->show();
+    //if there are columns
+    if(tableModel->columnCount()>0){
+        //we hide all column by default
+        for(int columnIndex = 0;columnIndex<tableModel->columnCount();columnIndex++){
+            ui->tableViewHomeTasks->hideColumn(columnIndex);
+        }
+        //we show the only one we want
+        ui->tableViewHomeTasks->showColumn(1);
+    }
 }
+
+/**
+ * @brief MainWindow::on_tableViewHomeTasks_clicked
+ * Private slots method of MainWindow class which update the ui when a row is clicked
+ * @param index: QModelIndex&
+ */
+void MainWindow::on_tableViewHomeTasks_clicked(const QModelIndex &index)
+{
+    qDebug()<<"void MainWindow::on_tableViewHomeTasks_clicked(const QModelIndex &index)";
+}
+

@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    tableModel = new QSqlTableModel(this,QSqlDatabase::database());
+    tableModel->setEditStrategy(QSqlTableModel::OnFieldChange);
+
     queryModel = new QSqlQueryModel(this);
 
     //we first show the 'Home' page
@@ -148,5 +151,6 @@ QString MainWindow::setNextId(QString table, QString column = "id",int iteration
     }
     return nextId;
 }
+
 
 
