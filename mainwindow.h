@@ -39,6 +39,7 @@ public:
     void pageHome();
     void fillComboBoxHomeProject();
     void updateTableViewHomeTasks();
+    void clearHome();
 
     /* newProject.cpp */
     void initNewProject();
@@ -56,6 +57,8 @@ private slots:
     /* home.cpp */
     void on_pushButtonHomeNewProject_clicked();
     void on_pushButtonHomeNewTask_clicked();
+    void on_comboBoxHomeProject_currentIndexChanged(int index);
+    void on_tableViewHomeTasks_clicked(const QModelIndex &index);
 
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();
@@ -66,8 +69,6 @@ private slots:
     void on_pushButtonNewTaskCancel_clicked();
     void on_allInputsNewTask_textChanged();
     void on_pushButtonNewTaskAddTask_clicked();
-
-    void on_tableViewHomeTasks_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

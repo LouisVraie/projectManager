@@ -83,9 +83,35 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
+             <widget class="QLabel" name="labelHomeTaskDescriptionTitle">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Task description :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QLabel" name="labelHomeTaskDescription">
               <property name="text">
                <string>Task Description</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelHomeTaskDurationTitle">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Task duration :</string>
               </property>
              </widget>
             </item>
@@ -98,7 +124,7 @@
                </size>
               </property>
               <property name="text">
-               <string>08:52</string>
+               <string>00:00</string>
               </property>
              </widget>
             </item>

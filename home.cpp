@@ -85,8 +85,7 @@ void MainWindow::updateTableViewHomeTasks()
         tableModel->setFilter("projectId ="+ui->comboBoxHomeProject->currentData().toString());
         tableModel->setSort(4,Qt::DescendingOrder);
     } else {
-        //clear the tableView
-        tableModel->clear();
+        clearHome();
     }
     tableModel->select();
 
@@ -102,6 +101,33 @@ void MainWindow::updateTableViewHomeTasks()
         //we show the only one we want
         ui->tableViewHomeTasks->showColumn(1);
     }
+}
+
+/**
+ * @brief MainWindow::clearHome
+ */
+void MainWindow::clearHome()
+{
+    qDebug()<<"void MainWindow::clearHome()";
+    //we clear tableModel
+    tableModel->clear();
+
+    //we clear all label fields
+    ui->labelHomeTaskDescription->clear();
+    ui->labelHomeTaskDuration->clear();
+
+    //we clear the tableViewHomeTasks selection
+    ui->tableViewHomeTasks->clearSelection();
+}
+
+/**
+ * @brief MainWindow::on_comboBoxHomeProject_currentIndexChanged
+ * @param index: int Current index
+ */
+void MainWindow::on_comboBoxHomeProject_currentIndexChanged(int index)
+{
+    qDebug()<<"void MainWindow::on_comboBoxHomeProject_currentIndexChanged(int index)";
+    updateTableViewHomeTasks();
 }
 
 /**
