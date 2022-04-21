@@ -98,7 +98,16 @@
             <item>
              <widget class="QLabel" name="labelHomeTaskDescription">
               <property name="text">
-               <string>Task Description</string>
+               <string/>
+              </property>
+              <property name="scaledContents">
+               <bool>false</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -123,8 +132,16 @@
                 <height>50</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>16</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>00:00</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
