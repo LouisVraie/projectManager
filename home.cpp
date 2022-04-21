@@ -114,7 +114,7 @@ void MainWindow::clearHome()
 
     //we clear all label fields
     ui->labelHomeTaskDescription->clear();
-    ui->labelHomeTaskDuration->setText("00:00");
+    ui->labelHomeTaskDuration->setText("00h00");
 
     //we clear the tableViewHomeTasks selection
     ui->tableViewHomeTasks->clearSelection();
@@ -127,6 +127,7 @@ void MainWindow::clearHome()
 void MainWindow::on_comboBoxHomeProject_currentIndexChanged(int index)
 {
     qDebug()<<"void MainWindow::on_comboBoxHomeProject_currentIndexChanged(int index)"<<index;
+    clearHome();
     updateTableViewHomeTasks();
 }
 
@@ -138,7 +139,13 @@ void MainWindow::on_comboBoxHomeProject_currentIndexChanged(int index)
 void MainWindow::on_tableViewHomeTasks_clicked(const QModelIndex &index)
 {
     qDebug()<<"void MainWindow::on_tableViewHomeTasks_clicked(const QModelIndex &index)";
+    //we set the task description in the label
     ui->labelHomeTaskDescription->setText(index.siblingAtColumn(1).data().toString());
-    ui->labelHomeTaskDuration->setText(index.siblingAtColumn(2).data().toString()+":"+index.siblingAtColumn(3).data().toString());
+    QString durationInHours = index.siblingAtColumn(2).data().toString();
+    durationInHours = (durationInHours == "0")?"00":durationInHours;
+    QString durationInMinutes = index.siblingAtColumn(3).data().toString();
+    durationInMinutes = (durationInMinutes == "0")?"00":durationInMinutes;
+    //we set the task duration in the label
+    ui->labelHomeTaskDuration->setText(durationInHours+"h"+durationInMinutes);
 }
 
