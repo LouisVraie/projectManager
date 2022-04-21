@@ -62,7 +62,7 @@ void MainWindow::on_allInputsNewTask_textChanged()
     if (ui->plainTextEditNewTaskDescription->toPlainText().length() > 300) {
         ui->plainTextEditNewTaskDescription->textCursor().deletePreviousChar();
     }
-    qDebug()<<description<<duration;
+
     if(description && duration){
         ui->pushButtonNewTaskAddTask->setEnabled(true);
     } else {
@@ -94,7 +94,7 @@ void MainWindow::on_pushButtonNewTaskAddTask_clicked()
 
     //if the request worked
     if(resultInsertTask.numRowsAffected() != -1){
-        updateListViewHomeTasks();
+        updateListWidgetHomeTasks();
         pageHome();
     }
 }

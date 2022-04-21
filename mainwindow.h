@@ -37,7 +37,7 @@ public:
     void initHome();
     void pageHome();
     void fillComboBoxHomeProject();
-    void updateListViewHomeTasks();
+    void updateListWidgetHomeTasks();
 
     /* newProject.cpp */
     void initNewProject();
@@ -64,7 +64,6 @@ private slots:
     /* newTask.cpp */
     void on_pushButtonNewTaskCancel_clicked();
     void on_allInputsNewTask_textChanged();
-
     void on_pushButtonNewTaskAddTask_clicked();
 
 private:

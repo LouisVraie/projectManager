@@ -62,7 +62,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QListView" name="listViewHomeTasks"/>
+           <widget class="QListWidget" name="listWidgetHomeTasks"/>
           </item>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -365,7 +365,7 @@
      <x>0</x>
      <y>0</y>
      <width>477</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
