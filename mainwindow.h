@@ -10,6 +10,7 @@
 #include <QInputDialog>
 #include <QPlainTextEdit>
 #include <QString>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -71,11 +72,14 @@ private slots:
     void on_allInputsNewTask_textChanged();
     void on_pushButtonNewTaskAddTask_clicked();
 
+    void on_pushButtonHomeDeleteTask_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     QSqlQueryModel *queryModel;
     QSqlTableModel *tableModel;
+    QModelIndex selectedTask;
 
 };
 #endif // MAINWINDOW_H

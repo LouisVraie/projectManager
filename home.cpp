@@ -149,12 +149,13 @@ void MainWindow::on_comboBoxHomeProject_currentIndexChanged(int index)
 void MainWindow::on_tableViewHomeTasks_clicked(const QModelIndex &index)
 {
     qDebug()<<"void MainWindow::on_tableViewHomeTasks_clicked(const QModelIndex &index)";
+    selectedTask = index;
     //we set the task description in the label
     ui->labelHomeTaskDescription->setText(index.siblingAtColumn(1).data().toString());
     QString durationInHours = index.siblingAtColumn(2).data().toString();
-    durationInHours = (durationInHours == "0")?"00":durationInHours;
+    durationInHours = (durationInHours.size() == 1)?"0"+durationInHours:durationInHours;
     QString durationInMinutes = index.siblingAtColumn(3).data().toString();
-    durationInMinutes = (durationInMinutes == "0")?"00":durationInMinutes;
+    durationInMinutes = (durationInMinutes.size() == 1)?"0"+durationInMinutes:durationInMinutes;
     //we set the task duration in the label
     ui->labelHomeTaskDuration->setText(durationInHours+"h"+durationInMinutes);
 }
@@ -184,3 +185,26 @@ void MainWindow::on_tableViewHomeTasks_rowSelected()
     }
 }
 
+/**
+ * @brief MainWindow::on_pushButtonHomeDeleteTask_clicked
+ * Private slots method of MainWindow class which delete the selected task from the current project
+ */
+void MainWindow::on_pushButtonHomeDeleteTask_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonHomeDeleteTask_clicked()";
+    //if a row is selected in the tableViewHomeTasks
+    if(ui->tableViewHomeTasks->selectionModel()->hasSelection()){
+        QString task = selectedTask.siblingAtColumn(1).data().toString();
+        task = (task.size() > 15 )? task.sliced(0,15)+"...":task;
+        if(QMessageBox::warning(this,this->windowTitle()+" - Delete Task","Do you really want to delete '"+task+"' task ?",
+                                QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+        {
+            //we remove the task
+            tableModel->removeRow(ui->tableViewHomeTasks->currentIndex().row());
+            tableModel->select();
+            clearHome();
+            updateTableViewHomeTasks();
+        }
+
+    }
+}
