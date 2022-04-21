@@ -59,6 +59,7 @@ private slots:
     void on_pushButtonHomeNewTask_clicked();
     void on_comboBoxHomeProject_currentIndexChanged(int index);
     void on_tableViewHomeTasks_clicked(const QModelIndex &index);
+    void on_tableViewHomeTasks_rowSelected();
 
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();

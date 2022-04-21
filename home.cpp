@@ -9,6 +9,9 @@ void MainWindow::initHome()
 {
     qDebug()<<"void MainWindow::initHome()";
 
+    clearHome();
+    connect(ui->tableViewHomeTasks,SIGNAL(clicked(QModelIndex)),this,SLOT(on_tableViewHomeTasks_rowSelected()));
+
     //we fill the comboBox with all unfinished projects
     fillComboBoxHomeProject();
 
@@ -118,6 +121,13 @@ void MainWindow::clearHome()
 
     //we clear the tableViewHomeTasks selection
     ui->tableViewHomeTasks->clearSelection();
+
+    //we disable buttons
+    ui->pushButtonHomeDeleteTask->setDisabled(true);
+    ui->pushButtonHomeSessionStartRestart->setDisabled(true);
+    ui->pushButtonHomeOrderUp->setDisabled(true);
+    ui->pushButtonHomeOrderDown->setDisabled(true);
+    ui->checkBoxHomeTaskFinished->setDisabled(true);
 }
 
 /**
@@ -147,5 +157,30 @@ void MainWindow::on_tableViewHomeTasks_clicked(const QModelIndex &index)
     durationInMinutes = (durationInMinutes == "0")?"00":durationInMinutes;
     //we set the task duration in the label
     ui->labelHomeTaskDuration->setText(durationInHours+"h"+durationInMinutes);
+}
+
+/**
+ * @brief MainWindow::on_tableViewHomeTasks_rowSelected
+ * Private slots method of MainWindow class which toggle buttons on the 'Home' page
+ */
+void MainWindow::on_tableViewHomeTasks_rowSelected()
+{
+    qDebug()<<"void MainWindow::on_tableViewHomeTasks_rowSelected()";
+    //if a row is selected in the tableViewHomeTasks
+    if(ui->tableViewHomeTasks->selectionModel()->hasSelection()){
+        //we enable buttons
+        ui->pushButtonHomeDeleteTask->setDisabled(false);
+        ui->pushButtonHomeSessionStartRestart->setDisabled(false);
+        ui->pushButtonHomeOrderUp->setDisabled(false);
+        ui->pushButtonHomeOrderDown->setDisabled(false);
+        ui->checkBoxHomeTaskFinished->setDisabled(false);
+    } else {
+        //we disable buttons
+        ui->pushButtonHomeDeleteTask->setDisabled(true);
+        ui->pushButtonHomeSessionStartRestart->setDisabled(true);
+        ui->pushButtonHomeOrderUp->setDisabled(true);
+        ui->pushButtonHomeOrderDown->setDisabled(true);
+        ui->checkBoxHomeTaskFinished->setDisabled(true);
+    }
 }
 
