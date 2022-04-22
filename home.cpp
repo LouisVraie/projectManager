@@ -67,8 +67,10 @@ void MainWindow::fillComboBoxHomeProject()
     //if the comboBox is valid
     if(ui->comboBoxHomeProject->currentData().isValid()){
         ui->pushButtonHomeNewTask->setDisabled(false);
+        ui->checkBoxHomeProjectFinished->setDisabled(false);
     } else {
         ui->pushButtonHomeNewTask->setDisabled(true);
+        ui->checkBoxHomeProjectFinished->setDisabled(true);
     }
 }
 
@@ -266,13 +268,16 @@ void MainWindow::on_pushButtonHomeOrderDown_clicked()
 
 /**
  * @brief MainWindow::on_comboBoxHomeProject_checkContent
+ * Private slots method of MainWindow class which toggle some inputs link to the current project
  */
 void MainWindow::on_comboBoxHomeProject_checkContent()
 {
     qDebug()<<"void MainWindow::on_comboBoxHomeProject_checkContent()";
     if(ui->comboBoxHomeProject->currentData().isValid()){
         ui->pushButtonHomeNewTask->setDisabled(false);
+        ui->checkBoxHomeProjectFinished->setDisabled(false);
     } else {
         ui->pushButtonHomeNewTask->setDisabled(true);
+        ui->checkBoxHomeProjectFinished->setDisabled(true);
     }
 }

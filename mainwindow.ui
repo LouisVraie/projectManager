@@ -144,7 +144,7 @@
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>50</height>
+                <height>30</height>
                </size>
               </property>
               <property name="font">
@@ -188,9 +188,32 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxHomeProjectFinished">
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="text">
+               <string>Project finished</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QProgressBar" name="progressBarHomeTaskTimer">
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="textVisible">
+           <bool>true</bool>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
