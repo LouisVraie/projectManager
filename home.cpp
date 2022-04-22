@@ -108,6 +108,7 @@ void MainWindow::updateTableViewHomeTasks()
 
 /**
  * @brief MainWindow::clearHome
+ * Public method of MainWindow class which clear inputs in the 'Home' page
  */
 void MainWindow::clearHome()
 {
@@ -132,6 +133,7 @@ void MainWindow::clearHome()
 
 /**
  * @brief MainWindow::on_comboBoxHomeProject_currentIndexChanged
+ * Private slots method of MainWindow class that changes the data displayed when changing projects
  * @param index: int Current index
  */
 void MainWindow::on_comboBoxHomeProject_currentIndexChanged(int index)
