@@ -75,7 +75,7 @@ void MainWindow::createTables()
     //creation of Task table
     QString task = "CREATE TABLE `Task`(`taskId` INTEGER NOT NULL,`taskDescription` VARCHAR(300),"
                    "`taskDurationInHours` INTEGER DEFAULT 0,`taskDurationInMinutes` INTEGER DEFAULT 0,"
-                   "`taskOrder` INTEGER DEFAULT 0,`taskIsFinished` BOOL DEFAULT 0,`taskFinishNote` VARCHAR(100),"
+                   "`taskOrder` INTEGER,`taskIsFinished` BOOL DEFAULT 0,`taskFinishNote` VARCHAR(100),"
                    "`projectId` INTEGER NOT NULL, foreign key (`projectId`) references Project(`projectId`),primary key(`taskId`));";
     qDebug()<<task;
     QSqlQuery createTableTask(task);

@@ -86,7 +86,7 @@ void MainWindow::updateTableViewHomeTasks()
     if (ui->comboBoxHomeProject->currentData().isValid()){
         tableModel->setTable("Task");
         tableModel->setFilter("projectId ="+ui->comboBoxHomeProject->currentData().toString());
-        tableModel->setSort(4,Qt::DescendingOrder);
+        tableModel->setSort(4,Qt::AscendingOrder);
     } else {
         clearHome();
     }
@@ -103,6 +103,7 @@ void MainWindow::updateTableViewHomeTasks()
         }
         //we show the only one we want
         ui->tableViewHomeTasks->showColumn(1);
+        ui->tableViewHomeTasks->showColumn(4);//temporary
     }
 }
 
@@ -205,6 +206,27 @@ void MainWindow::on_pushButtonHomeDeleteTask_clicked()
             clearHome();
             updateTableViewHomeTasks();
         }
+    }
+}
 
+/**
+ * @brief MainWindow::on_pushButtonHomeOrderUp_clicked
+ * Private slots method of MainWindow class which put the selected task higher in the Project task order
+ */
+void MainWindow::on_pushButtonHomeOrderUp_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonHomeOrderUp_clicked()";
+    //if the task isn't the top one
+    if(selectedTask.row() != 0 && ui->tableViewHomeTasks->selectionModel()->hasSelection()){
+        int selectedRow = selectedTask.row();
+        QString upperTaskOrder = selectedTask.sibling(selectedRow-1,4).data().toString();;
+        QString selectedTaskOrder = selectedTask.siblingAtColumn(4).data().toString();
+        //we add 1 to the taskOrder
+        QString reqUpdateSelectedTask = "UPDATE Task SET taskOrder="+upperTaskOrder+" WHERE taskId="+selectedTask.siblingAtColumn(0).data().toString();
+        queryModel->setQuery(reqUpdateSelectedTask);
+        QString reqUpdateUpperTask = "UPDATE Task SET taskOrder="+selectedTaskOrder+" WHERE taskId="+selectedTask.sibling(selectedRow-1,0).data().toString();
+        queryModel->setQuery(reqUpdateUpperTask);
+        //we update the tableView
+        updateTableViewHomeTasks();
     }
 }

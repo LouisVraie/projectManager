@@ -74,6 +74,8 @@ private slots:
 
     void on_pushButtonHomeDeleteTask_clicked();
 
+    void on_pushButtonHomeOrderUp_clicked();
+
 private:
     Ui::MainWindow *ui;
 

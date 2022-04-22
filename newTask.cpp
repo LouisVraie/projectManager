@@ -85,16 +85,24 @@ void MainWindow::on_pushButtonNewTaskAddTask_clicked()
     QString durationInHours = QString::number(ui->spinBoxNewTaskDurationInHours->value());
     QString durationInMinutes = QString::number(ui->spinBoxNewTaskDurationInMinutes->value());
     QString projectId = ui->comboBoxHomeProject->currentData().toString();
-
-    //insert request
-    QString reqInsertTask = "INSERT INTO Task (taskId,taskDescription,taskDurationInHours,taskDurationInMinutes,projectId) "
-                               "VALUES ("+taskId+",'"+description+"',"+durationInHours+","+durationInMinutes+","+projectId+")";
-    qDebug()<<reqInsertTask;
-    QSqlQuery resultInsertTask(reqInsertTask);
-
+    QString reqTaskOrder = "SELECT IFNULL(MAX(taskOrder)+1,1) as nextTaskOrder FROM Task";
+    qDebug()<<reqTaskOrder;
+    QSqlQuery resultTaskOrder(reqTaskOrder);
     //if the request worked
-    if(resultInsertTask.numRowsAffected() != -1){
-        updateTableViewHomeTasks();
-        pageHome();
+    if(resultTaskOrder.numRowsAffected() != -1){
+        resultTaskOrder.first();
+        QString taskOrder = resultTaskOrder.value("nextTaskOrder").toString();
+        //insert request
+        QString reqInsertTask = "INSERT INTO Task (taskId,taskDescription,taskDurationInHours,taskDurationInMinutes,taskOrder,projectId) "
+                                "VALUES ("+taskId+",'"+description+"',"+durationInHours+","+durationInMinutes+
+                                ","+taskOrder+","+projectId+")";
+        qDebug()<<reqInsertTask;
+        QSqlQuery resultInsertTask(reqInsertTask);
+
+        //if the request worked
+        if(resultInsertTask.numRowsAffected() != -1){
+            updateTableViewHomeTasks();
+            pageHome();
+        }
     }
 }
