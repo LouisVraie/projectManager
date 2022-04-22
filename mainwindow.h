@@ -11,6 +11,7 @@
 #include <QPlainTextEdit>
 #include <QString>
 #include <QMessageBox>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -65,6 +66,7 @@ private slots:
     void on_pushButtonHomeOrderUp_clicked();
     void on_pushButtonHomeOrderDown_clicked();
     void on_comboBoxHomeProject_checkContent();
+    void on_progressBarHomeTaskTimer_update();
 
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();
@@ -77,12 +79,14 @@ private slots:
     void on_pushButtonNewTaskAddTask_clicked();
 
 
+    void on_pushButtonHomeSessionStartRestart_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     QSqlQueryModel *queryModel;
     QSqlTableModel *tableModel;
     QModelIndex selectedTask;
-
+    QTimer *sessionTimer;
 };
 #endif // MAINWINDOW_H

@@ -13,6 +13,8 @@ void MainWindow::initHome()
     connect(ui->comboBoxHomeProject,SIGNAL(currentIndexChanged(int)),this,SLOT(on_comboBoxHomeProject_checkContent()));
     connect(ui->tableViewHomeTasks,SIGNAL(clicked(QModelIndex)),this,SLOT(on_tableViewHomeTasks_rowSelected()));
 
+    sessionTimer = new QTimer();
+    connect(sessionTimer,SIGNAL(timeout()),this,SLOT(on_progressBarHomeTaskTimer_update()));
 
     //we fill the comboBox with all unfinished projects
     fillComboBoxHomeProject();
@@ -280,4 +282,29 @@ void MainWindow::on_comboBoxHomeProject_checkContent()
         ui->pushButtonHomeNewTask->setDisabled(true);
         ui->checkBoxHomeProjectFinished->setDisabled(true);
     }
+}
+
+/**
+ * @brief MainWindow::on_progressBarHomeTaskTimer_update
+ * Private slots method of MainWindow class which update the progressBarHomeTaskTimer value
+ */
+void MainWindow::on_progressBarHomeTaskTimer_update()
+{
+    qDebug()<<"void MainWindow::on_progressBarHomeTaskTimer_update()";
+    int value = ui->progressBarHomeTaskTimer->value();
+    if(value != 100){
+        ui->progressBarHomeTaskTimer->setValue(value+1);
+    } else {
+        ui->progressBarHomeTaskTimer->setStyleSheet("color: red;");
+    }
+}
+
+/**
+ * @brief MainWindow::on_pushButtonHomeSessionStartRestart_clicked
+ * Private slots method of MainWindow class which start or restart the timer for the selected task
+ */
+void MainWindow::on_pushButtonHomeSessionStartRestart_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonHomeSessionStartRestart_clicked()";
+    sessionTimer->start(100);
 }
