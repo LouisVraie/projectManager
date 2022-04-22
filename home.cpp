@@ -10,7 +10,9 @@ void MainWindow::initHome()
     qDebug()<<"void MainWindow::initHome()";
 
     clearHome();
+    connect(ui->comboBoxHomeProject,SIGNAL(currentIndexChanged(int)),this,SLOT(on_comboBoxHomeProject_checkContent()));
     connect(ui->tableViewHomeTasks,SIGNAL(clicked(QModelIndex)),this,SLOT(on_tableViewHomeTasks_rowSelected()));
+
 
     //we fill the comboBox with all unfinished projects
     fillComboBoxHomeProject();
@@ -61,6 +63,12 @@ void MainWindow::fillComboBoxHomeProject()
         QString projectTitle = resultSelectProject.value("projectTitle").toString();
         QString projectId = resultSelectProject.value("projectId").toString();
         ui->comboBoxHomeProject->addItem(projectTitle,projectId);
+    }
+    //if the comboBox is valid
+    if(ui->comboBoxHomeProject->currentData().isValid()){
+        ui->pushButtonHomeNewTask->setDisabled(false);
+    } else {
+        ui->pushButtonHomeNewTask->setDisabled(true);
     }
 }
 
@@ -222,7 +230,7 @@ void MainWindow::on_pushButtonHomeOrderUp_clicked()
         int selectedRow = selectedTask.row();
         QString upperTaskOrder = selectedTask.sibling(selectedRow-1,4).data().toString();;
         QString selectedTaskOrder = selectedTask.siblingAtColumn(4).data().toString();
-        //we add 1 to the taskOrder
+        //we change the taskOrder
         QString reqUpdateSelectedTask = "UPDATE Task SET taskOrder="+upperTaskOrder+" WHERE taskId="+selectedTask.siblingAtColumn(0).data().toString();
         queryModel->setQuery(reqUpdateSelectedTask);
         QString reqUpdateUpperTask = "UPDATE Task SET taskOrder="+selectedTaskOrder+" WHERE taskId="+selectedTask.sibling(selectedRow-1,0).data().toString();
@@ -240,12 +248,12 @@ void MainWindow::on_pushButtonHomeOrderUp_clicked()
 void MainWindow::on_pushButtonHomeOrderDown_clicked()
 {
     qDebug()<<"void MainWindow::on_pushButtonHomeOrderDown_clicked()";
-    //if the task isn't the top one
+    //if the task isn't the bottom one
     if(selectedTask.row() != ui->tableViewHomeTasks->model()->rowCount() && ui->tableViewHomeTasks->selectionModel()->hasSelection()){
         int selectedRow = selectedTask.row();
         QString lowerTaskOrder = selectedTask.sibling(selectedRow+1,4).data().toString();;
         QString selectedTaskOrder = selectedTask.siblingAtColumn(4).data().toString();
-        //we add 1 to the taskOrder
+        //we change the taskOrder
         QString reqUpdateSelectedTask = "UPDATE Task SET taskOrder="+lowerTaskOrder+" WHERE taskId="+selectedTask.siblingAtColumn(0).data().toString();
         queryModel->setQuery(reqUpdateSelectedTask);
         QString reqUpdateLowerUpperTask = "UPDATE Task SET taskOrder="+selectedTaskOrder+" WHERE taskId="+selectedTask.sibling(selectedRow+1,0).data().toString();
@@ -253,5 +261,18 @@ void MainWindow::on_pushButtonHomeOrderDown_clicked()
         //we update the tableView
         updateTableViewHomeTasks();
         on_tableViewHomeTasks_rowSelected();
+    }
+}
+
+/**
+ * @brief MainWindow::on_comboBoxHomeProject_checkContent
+ */
+void MainWindow::on_comboBoxHomeProject_checkContent()
+{
+    qDebug()<<"void MainWindow::on_comboBoxHomeProject_checkContent()";
+    if(ui->comboBoxHomeProject->currentData().isValid()){
+        ui->pushButtonHomeNewTask->setDisabled(false);
+    } else {
+        ui->pushButtonHomeNewTask->setDisabled(true);
     }
 }
