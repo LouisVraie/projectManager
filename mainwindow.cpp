@@ -154,5 +154,3 @@ QString MainWindow::setNextId(QString table, QString column = "id",int iteration
 
 
 
-
-

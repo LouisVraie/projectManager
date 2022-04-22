@@ -103,7 +103,6 @@ void MainWindow::updateTableViewHomeTasks()
         }
         //we show the only one we want
         ui->tableViewHomeTasks->showColumn(1);
-        ui->tableViewHomeTasks->showColumn(4);//temporary
     }
 }
 
@@ -228,5 +227,29 @@ void MainWindow::on_pushButtonHomeOrderUp_clicked()
         queryModel->setQuery(reqUpdateUpperTask);
         //we update the tableView
         updateTableViewHomeTasks();
+        on_tableViewHomeTasks_rowSelected();
+    }
+}
+
+/**
+ * @brief MainWindow::on_pushButtonHomeOrderDown_clicked
+ * Private slots method of MainWindow class which put the selected task lower in the Project task order
+ */
+void MainWindow::on_pushButtonHomeOrderDown_clicked()
+{
+    qDebug()<<"void MainWindow::on_pushButtonHomeOrderDown_clicked()";
+    //if the task isn't the top one
+    if(selectedTask.row() != ui->tableViewHomeTasks->model()->rowCount() && ui->tableViewHomeTasks->selectionModel()->hasSelection()){
+        int selectedRow = selectedTask.row();
+        QString lowerTaskOrder = selectedTask.sibling(selectedRow+1,4).data().toString();;
+        QString selectedTaskOrder = selectedTask.siblingAtColumn(4).data().toString();
+        //we add 1 to the taskOrder
+        QString reqUpdateSelectedTask = "UPDATE Task SET taskOrder="+lowerTaskOrder+" WHERE taskId="+selectedTask.siblingAtColumn(0).data().toString();
+        queryModel->setQuery(reqUpdateSelectedTask);
+        QString reqUpdateLowerUpperTask = "UPDATE Task SET taskOrder="+selectedTaskOrder+" WHERE taskId="+selectedTask.sibling(selectedRow+1,0).data().toString();
+        queryModel->setQuery(reqUpdateLowerUpperTask);
+        //we update the tableView
+        updateTableViewHomeTasks();
+        on_tableViewHomeTasks_rowSelected();
     }
 }

@@ -76,6 +76,8 @@ private slots:
 
     void on_pushButtonHomeOrderUp_clicked();
 
+    void on_pushButtonHomeOrderDown_clicked();
+
 private:
     Ui::MainWindow *ui;
 
