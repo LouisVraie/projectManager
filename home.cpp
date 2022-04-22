@@ -15,6 +15,7 @@ void MainWindow::initHome()
 
     sessionTimer = new QTimer();
     connect(sessionTimer,SIGNAL(timeout()),this,SLOT(on_progressBarHomeTaskTimer_update()));
+    sessionIsActive = false;
 
     //we fill the comboBox with all unfinished projects
     fillComboBoxHomeProject();
@@ -306,5 +307,33 @@ void MainWindow::on_progressBarHomeTaskTimer_update()
 void MainWindow::on_pushButtonHomeSessionStartRestart_clicked()
 {
     qDebug()<<"void MainWindow::on_pushButtonHomeSessionStartRestart_clicked()";
-    sessionTimer->start(100);
+    if(!sessionIsActive){
+        sessionTimer->start(100);
+        ui->pushButtonHomeSessionStartRestart->setText("Stop");
+        toggleHomeInputsWhenStartRestart(true);
+    } else {
+        sessionTimer->stop();
+        ui->pushButtonHomeSessionStartRestart->setText("Start / Restart");
+        toggleHomeInputsWhenStartRestart(false);
+    }
+    sessionIsActive = !sessionIsActive;
+}
+
+/**
+ * @brief MainWindow::toggleHomeInputsWhenStartRestart
+ * Private slots method of MainWindow class which toggle all inputs of the 'Home' except pushButtonHomeSessionStartRestart
+ * @param isDisable: bool
+ */
+void MainWindow::toggleHomeInputsWhenStartRestart(bool isDisable)
+{
+    qDebug()<<"void MainWindow::toggleHomeInputsWhenStartRestart(bool isDisable)";
+    ui->comboBoxHomeProject->setDisabled(isDisable);
+    ui->pushButtonHomeNewProject->setDisabled(isDisable);
+    ui->tableViewHomeTasks->setDisabled(isDisable);
+    ui->pushButtonHomeNewTask->setDisabled(isDisable);
+    ui->pushButtonHomeDeleteTask->setDisabled(isDisable);
+    ui->pushButtonHomeOrderUp->setDisabled(isDisable);
+    ui->pushButtonHomeOrderDown->setDisabled(isDisable);
+    ui->checkBoxHomeTaskFinished->setDisabled(isDisable);
+    ui->checkBoxHomeProjectFinished->setDisabled(isDisable);
 }

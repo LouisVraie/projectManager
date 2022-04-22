@@ -67,6 +67,8 @@ private slots:
     void on_pushButtonHomeOrderDown_clicked();
     void on_comboBoxHomeProject_checkContent();
     void on_progressBarHomeTaskTimer_update();
+    void on_pushButtonHomeSessionStartRestart_clicked();
+    void toggleHomeInputsWhenStartRestart(bool isDisable);
 
     /* newProject.cpp */
     void on_pushButtonNewProjectCancel_clicked();
@@ -78,9 +80,6 @@ private slots:
     void on_allInputsNewTask_textChanged();
     void on_pushButtonNewTaskAddTask_clicked();
 
-
-    void on_pushButtonHomeSessionStartRestart_clicked();
-
 private:
     Ui::MainWindow *ui;
 
@@ -88,5 +87,6 @@ private:
     QSqlTableModel *tableModel;
     QModelIndex selectedTask;
     QTimer *sessionTimer;
+    bool sessionIsActive;
 };
 #endif // MAINWINDOW_H
